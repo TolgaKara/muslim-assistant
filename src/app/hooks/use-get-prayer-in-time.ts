@@ -17,12 +17,15 @@ export const useGetPrayerInTime = ({
     }
 
     for (let i = 0; i < prayers.length; i++) {
-      if (i === prayers.length - 1) "Isha";
+      if (i === prayers.length - 1) {
+        setPrayerInTime(prayers[i]);
+        break;
+      }
 
       const prayer = prayers[i];
       if (
         currentTime > timings.timings[prayer] &&
-        currentTime < timings.timings[prayers[i + 1]]
+        currentTime <= timings.timings[prayers[i + 1]]
       ) {
         setPrayerInTime(prayer);
       }
