@@ -9,8 +9,11 @@ export function TimelineItemPrimary({
 }) {
   if (highlighted) {
     return (
-      <div className="text-4xl md:text-6xl lg:text-8xl">
-        <strong>{content}</strong>
+      <div
+        title="prayer-in-time"
+        className="font-bold text-4xl md:text-6xl lg:text-8xl"
+      >
+        {content}
       </div>
     );
   } else {

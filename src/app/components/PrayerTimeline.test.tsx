@@ -5,6 +5,9 @@ import { DateTime } from "luxon";
 import { prayers, allTimings } from "./PrayerTimeline";
 import React from "react";
 
+jest.mock("../hooks/use-get-prayer-in-time", () => ({
+  useGetPrayerInTime: jest.fn().mockReturnValue("Dhuhr"),
+}));
 describe("Prayer Timeline", () => {
   it("should render the current time in HH:MM format", () => {
     render(<PrayerTimeline />);
@@ -45,12 +48,9 @@ describe("Prayer Timeline", () => {
     expect(showPrayersOnlyButton).toBeInTheDocument();
   });
 
-  it.skip("should render the current prayer as highlighted", async () => {
-    const highlightedPrayer = "Fajr";
+  it("should render the current prayer as highlighted", async () => {
     render(<PrayerTimeline />);
-    console.log("here");
-    const prayerTime = await screen.findByText(highlightedPrayer);
-    expect(prayerTime).not.toBeInTheDocument();
-    //TODO: mock the time to be a specific time, and check if the current prayer is highlighted
+    const prayerInTime = await screen.findByTitle("prayer-in-time");
+    expect(prayerInTime.textContent).toBe("Dhuhr");
   });
 });

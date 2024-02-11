@@ -82,7 +82,7 @@ export async function getPrayerTimesByCity({
   country,
   date,
 }: PrayerApiProps): Promise<PrayerByTimingsReturn | null> {
-  const options: PrayerByTimingsOptions = {
+  const options = {
     city,
     country,
     school: 1,
@@ -93,11 +93,14 @@ export async function getPrayerTimesByCity({
     date = DateTime.now().toFormat("dd-LL-yyyy");
   }
 
-  const url = base_url + "/timingsByCity/" + date;
+  let url = base_url + "/timingsByCity/" + date;
+  const searchParams = new URLSearchParams(options as any);
+  url = url + "?" + searchParams.toString();
   try {
-    const { data }: PrayerApiByTimingsData = await axios.get(url, {
-      params: options,
+    const resp = await fetch(url, {
+      cache: "force-cache",
     });
+    const data = await resp.json();
     console.log("TIMINGS FROM API", data.data.timings);
 
     return { timings: data.data.timings, date: data.data.date.gregorian.date };
