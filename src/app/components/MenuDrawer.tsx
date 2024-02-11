@@ -1,23 +1,23 @@
 "use client";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
+import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
+import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
+import WashIcon from "@mui/icons-material/Wash";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+
 import { useState } from "react";
 import React from "react";
-import { Button, SwipeableDrawer } from "@mui/material";
+import { SwipeableDrawer } from "@mui/material";
+import MosqueIcon from "@mui/icons-material/Mosque";
 
 const drawerWidth = 240;
 
@@ -49,41 +49,29 @@ export default function ResponsiveDrawer(props: Props) {
     };
 
   const menuList = [
-    { name: "Prayers", icon: <InboxIcon /> },
-    { name: "Zakat", icon: <MailIcon /> },
-    { name: "Mosques", icon: <InboxIcon /> },
-    { name: "Dua creator", icon: <MailIcon /> },
-    { name: "Settings", icon: <InboxIcon /> },
+    { name: "Prayer Time", icon: <AccessTimeIcon />, href: "/prayers" },
+    { name: "Purification", icon: <WashIcon />, href: "/purification" },
+    { name: "Library", icon: <LocalLibraryIcon />, href: "/library" },
+    { name: "Zakat", icon: <CardGiftcardIcon />, href: "/zakat" },
+    { name: "Mosques", icon: <MosqueIcon />, href: "/mosques" },
+    { name: "Dua creator", icon: <QuestionAnswerIcon />, href: "/dua" },
+    { name: "Settings", icon: <InboxIcon />, href: "/settings" },
   ];
   const drawer = (
     <div>
       <Toolbar />
       <Divider />
       <List>
-        {["Prayers", "Zakat", "Mosques", "Dua creator", "Glossary"].map(
-          (text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
+        {menuList.map(({ name, icon, href }) => (
+          <>
+            {name === "Settings" && <Divider />}
+            <ListItem key={name} disablePadding>
+              <ListItemButton component="a" href={href}>
+                <ListItemIcon>{icon}</ListItemIcon>
+                <ListItemText primary={name} />
               </ListItemButton>
             </ListItem>
-          )
-        )}
-      </List>
-      <Divider />
-      <List>
-        {["Settings"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
+          </>
         ))}
       </List>
     </div>

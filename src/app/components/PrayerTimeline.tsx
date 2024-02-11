@@ -4,6 +4,7 @@ import { DateTime } from "luxon";
 import { TimelineItemPrimary, TimelineItemSecondary } from "./TimelineItem";
 import { useFetchPrayerTimings } from "../hooks/use-fetch-prayer-timings";
 import { useGetPrayerInTime } from "../hooks/use-get-prayer-in-time";
+import { Button } from "@mui/material";
 
 export type Prayer = "Fajr" | "Dhuhr" | "Asr" | "Maghrib" | "Isha";
 export type Timing =
@@ -92,12 +93,13 @@ export default function PrayerTimeline() {
           ))}
       </div>
 
-      <button
-        className="mx-auto"
+      <Button
+        variant="text"
+        className="mx-auto text-black"
         onClick={() => setShowPrayersOnly(!showPrayersOnly)}
       >
         {showPrayersOnly ? "Show all" : "Show prayers only"}
-      </button>
+      </Button>
     </div>
   );
 }

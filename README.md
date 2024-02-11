@@ -38,6 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 # TODO
 
 - zakat calculator
+- library
 - dua creator
 - coran assistant
 - prayer assistant
@@ -46,4 +47,3 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - mosques near you
 - glossary
 - scholars tree
-- library

@@ -5,6 +5,8 @@ import React from "react";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "../theme";
+import ResponsiveDrawer from "./components/MenuDrawer";
+import PrayerTimeline from "./components/PrayerTimeline";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -42,7 +44,14 @@ export default function RootLayout({
     <html lang="en">
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
-          <body className={inter.className}>{children}</body>
+          <body className={inter.className}>
+            <main className="h-screen w-screen flex flex-col">
+              <ResponsiveDrawer />
+              <section className="container mx-auto px-4 h-full">
+                {children}
+              </section>
+            </main>
+          </body>
         </ThemeProvider>
       </AppRouterCacheProvider>
     </html>
