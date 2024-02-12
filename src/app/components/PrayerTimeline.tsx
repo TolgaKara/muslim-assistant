@@ -5,29 +5,7 @@ import { TimelineItemPrimary, TimelineItemSecondary } from "./TimelineItem";
 import { useFetchPrayerTimings } from "../hooks/use-fetch-prayer-timings";
 import { useGetPrayerInTime } from "../hooks/use-get-prayer-in-time";
 import { Button } from "@mui/material";
-
-export type Prayer = "Fajr" | "Dhuhr" | "Asr" | "Maghrib" | "Isha";
-export type Timing =
-  | "Fajr"
-  | "Sunrise"
-  | "Dhuhr"
-  | "Asr"
-  | "Maghrib"
-  | "Isha"
-  | "Imsak"
-  | "Midnight";
-
-export const prayers: Prayer[] = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
-export const allTimings: Timing[] = [
-  "Fajr",
-  "Sunrise",
-  "Dhuhr",
-  "Asr",
-  "Maghrib",
-  "Isha",
-  "Imsak",
-  "Midnight",
-];
+import { allTimings, prayers } from "../constants";
 
 export default function PrayerTimeline() {
   const [showPrayersOnly, setShowPrayersOnly] = useState(true);

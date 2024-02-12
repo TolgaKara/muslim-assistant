@@ -1,7 +1,8 @@
 import { DateTime } from "luxon";
 import { useEffect, useState } from "react";
-import { Prayer, prayers } from "../components/PrayerTimeline";
+
 import { PrayerTimings } from "./use-fetch-prayer-timings";
+import { Prayer, prayers } from "../constants";
 
 export const useGetPrayerInTime = ({
   currentTime,
@@ -17,6 +18,8 @@ export const useGetPrayerInTime = ({
     }
 
     for (let i = 0; i < prayers.length; i++) {
+      console.log("prayers[i]", i, prayers[i]);
+
       if (i === prayers.length - 1) {
         setPrayerInTime(prayers[i]);
         break;
@@ -28,6 +31,7 @@ export const useGetPrayerInTime = ({
         currentTime <= timings.timings[prayers[i + 1]]
       ) {
         setPrayerInTime(prayer);
+        break;
       }
     }
   }, [currentTime]);
