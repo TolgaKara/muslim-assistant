@@ -21,6 +21,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { Fragment, useState } from "react";
 import React from "react";
 import { SwipeableDrawer } from "@mui/material";
+import { usePathname } from "next/navigation";
 
 const drawerWidth = 240;
 
@@ -40,6 +41,12 @@ type PageDescription = {
 };
 
 export const pageDescriptionList: PageDescription[] = [
+  {
+    name: "Muslim assistant",
+    icon: <AccessTimeIcon />,
+    href: "/",
+    description: "Welcome to the Muslim assistant. Click here to open the menu",
+  },
   {
     name: "Prayer Time",
     icon: <AccessTimeIcon />,
@@ -83,9 +90,16 @@ export const pageDescriptionList: PageDescription[] = [
     description: "Modify your settings.",
   },
 ];
+
+const getPageName = () => {
+  const pathname = usePathname();
+  console.log("pathname", pathname);
+
+  const page = pageDescriptionList.find((page) => page.href === pathname);
+  return page ? page.name : "";
+};
+
 export default function ResponsiveDrawer(props: Props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDrawer =
@@ -113,7 +127,9 @@ export default function ResponsiveDrawer(props: Props) {
             <ListItem disablePadding>
               <ListItemButton component="a" href={href}>
                 <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={name} />
+                <ListItemText
+                  primary={name === "Muslim assistant" ? "Home" : name}
+                />
               </ListItemButton>
             </ListItem>
           </Fragment>
@@ -127,15 +143,16 @@ export default function ResponsiveDrawer(props: Props) {
       {
         <>
           <h1
-            className="text-center text-xl md:text-6xl pt-3"
+            className="text-center text-2xl md:text-6xl pt-3 mb-8"
             onClick={toggleDrawer(true)}
           >
-            Muslim assistant
+            {getPageName()}
           </h1>
 
           <SwipeableDrawer
             anchor="left"
             open={isOpen}
+            className="w-8/12"
             onClose={toggleDrawer(false)}
             onOpen={toggleDrawer(true)}
           >

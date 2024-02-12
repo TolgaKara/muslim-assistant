@@ -5,9 +5,10 @@ import { pageDescriptionList } from "./components/MenuDrawer";
 
 export default function Home() {
   return (
-    <div className="container mb-32 flex flex-wrap flex-col items-center md:flex-row md:justify-center text-start h-full mt-5">
+    <div className="container mb-32 flex flex-wrap flex-col items-start md:flex-row md:justify-center text-start h-full mt-5">
       {pageDescriptionList.map((item) => {
-        if (item.name === "Settings") return;
+        if (item.name === "Settings" || item.name === "Muslim assistant")
+          return;
         return (
           <Card
             key={item.name}
